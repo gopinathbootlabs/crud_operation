@@ -26,16 +26,16 @@ public class Controllers {
         return "Data have been added successfully";
     }
 
-    @DeleteMapping("/deletedata/{emp_id}")
-    public String delete(@PathVariable int emp_id)
+    @DeleteMapping("/deletedata/{id}")
+    public String delete(@PathVariable Long id)
     {
-        repo.deleteById(emp_id);
+        repo.deleteById(id);
         return "Deleted successfully";
     }
 
     @PutMapping("/updatedata")
     public String updateName(@RequestBody Model updatedData) {
-        Optional<Model> existingData = repo.findById(updatedData.getEmp_id());
+        Optional<Model> existingData = repo.findById(updatedData.getId());
             Model dataToUpdate = existingData.get();
             dataToUpdate.setName(updatedData.getName());
             repo.save(dataToUpdate);
